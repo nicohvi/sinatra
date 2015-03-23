@@ -1010,6 +1010,7 @@ module Sinatra
       end
 
       # store calculated params in the env
+      byebug
       env['params'] = @params
 
       catch(:pass) do
