@@ -1009,6 +1009,9 @@ module Sinatra
         keys.zip(values) { |k,v| Array === @params[k] ? @params[k] << v : @params[k] = v if v }
       end
 
+      # store calculated params in the env
+      env['params'] = @params
+
       catch(:pass) do
         conditions.each { |c| throw :pass if c.bind(self).call == false }
         block ? block[self, values] : yield(self, values)
